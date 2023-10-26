@@ -1,3 +1,5 @@
+View or share house listings for sale or rent. Built with Firebase for back-end data storage and management.
+
 [Live Site](https://house-marketplace-amber-alpha.vercel.app/)
 
 [![My Skills](https://skillicons.dev/icons?i=react,firebase)](https://skillicons.dev)
@@ -117,6 +119,15 @@
   - select "+ ENABLE APIS AND SERVICES"
   - search and select "Geocoding API"
   - enable "Geocoding API"
+- securing Google Geocoding API
+  - go to "https://console.cloud.google.com/"
+  - select "APIs & Services"
+  - select "Credentials"
+  - select "Maps API Key"
+  - select "Websites" under "Set an application restriction"
+  - add deployed website under "Website restrictions"
+  - select "Restrict key" for "Geocoding API" under "API restrictions"
+  - select "save"
 - using .env variables
   - .env variables must be prefixed with REACT_APP
   - e.g. REACT_APP_VARIABLE_NAME
