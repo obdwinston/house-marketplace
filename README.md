@@ -102,6 +102,7 @@
 
 - form element values are returned as strings
   - e.g. value={true}
+  - e.g. if (e.target.value === "true") boolean = true;
 - nullish coalescing operator (??)
   - if left-hand-side operand is null or undefined, returns right-hand-side operand, else returns left-hand-side operand
   - e.g. null ?? returnedValue
