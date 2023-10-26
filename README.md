@@ -1,4 +1,4 @@
-View or share house listings for sale or rent. Built with Firebase for back-end data storage and management.
+Marketplace to view or share house listings for sale or rent. Built with Firebase for back-end data storage and management.
 
 [Live Site](https://house-marketplace-amber-alpha.vercel.app/)
 
