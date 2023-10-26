@@ -1,3 +1,5 @@
+[Live Site] (https://house-marketplace-amber-alpha.vercel.app/)
+
 ## Setting up Firebase
 
 ### Initialising Firebase
@@ -14,6 +16,7 @@
 
 - select native Email/Password provider
 - select Google provider
+- select settings and add deployed website to authorized domains
 
 ### Setting up Firebase Firestore
 
