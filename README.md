@@ -1,8 +1,3 @@
-default accounts
-email: mario@email.com
-email: peach@email.com
-password: password12345
-
 ## Setting up Firebase
 
 ### Initialising Firebase
@@ -146,11 +141,11 @@ password: password12345
 ### Contact Page
 
 - difference between useParams and useSearchParams
-  - in App.js: /contact/:landlordId
+  - App.js: /contact/:landlordId
   - route parameters come after :
   - e.g. const params = useParams();
   - e.g. params.landlordId
-  - in Listing.js: /contact/${listing.userRef}?listingName=${listing.name}
+  - Listing.js: /contact/${listing.userRef}?listingName=${listing.name}
   - search parameters come after ?
   - e.g. const [searchParams, setSearchParams] = useSearchParams();
   - e.g. searchParams.get("listingName")
