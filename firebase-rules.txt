@@ -1,0 +1,38 @@
+// Firestore Rules
+
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+		// Listings
+  	match /listings/{listing} {
+      allow create: if request.auth != null && request.resource.data.imageUrls.size() < 7;
+      allow read;
+      allow update: if resource.data.userRef == request.auth.uid;
+      allow delete: if resource.data.userRef == request.auth.uid;
+    }
+    
+    // Users
+    match /users/{user} {
+    	allow create;
+      allow read;
+    	allow update: if user == request.auth.uid;
+    }
+  }
+}
+
+// Storage Rules
+
+rules_version = '2';
+
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /{allPaths=**} {
+      allow read;
+      allow write: if // write: create, update, delete (i.e. less read)
+      request.auth != null &&
+      request.resource.size < 2 * 1024 * 1024 && // 2 MB
+      request.resource.contentType.matches('image/.*');
+    }
+  }
+}

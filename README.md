@@ -1,70 +1,163 @@
-# Getting Started with Create React App
+default accounts
+email: mario@email.com
+email: peach@email.com
+password: password12345
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Setting up Firebase
 
-## Available Scripts
+### Initialising Firebase
 
-In the project directory, you can run:
+- create Firebase project
+- create web app in project
+- src folder: create firebase.config.js file
+- terminal: npm install firebase
+- firebase.config.js: copy and paste Firebase SDK initialisation code
+- firebase.config.js: import {getFirestore} from "firebase/firestore"
+- firebase.config.js: export const db = getFirestore()
 
-### `npm start`
+### Setting up Firebase Authentication
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- select native Email/Password provider
+- select Google provider
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Setting up Firebase Firestore
 
-### `npm test`
+- select server location and test mode
+- add firestore rules from firebase-rules.txt
+- create sample data
+- create composite indexes
+  - indexes are pre-sorted data to improve retrieval performance
+  - in Firebase, all queries require an index
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Setting up Firebase Storage
 
-### `npm run build`
+- select server location and test mode
+- add storage rules from firebase-rules.txt
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Additional Notes
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Navbar Component
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- useNavigate, useLocation from react-router-dom
+  - useNavigate() is a function that navigates to a specified path
+  - e.g. const navigate = useNavigate();
+  - useLocation() is a function that retrieves the current path
+  - e.g. const location = useLocation();
+  - e.g. location.pathname
+- .svg file as ReactComponent
+  - svg stands for Scalable Vector Graphics
+  - treated like a DOM element (i.e. can be styled, animated, etc.)
+  - e.g. import {ReactComponent as IconName} from "./assets/IconName.svg"
+  - e.g. &lt;IconName /&gt;
 
-### `npm run eject`
+### SignIn/SignUp Page
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- setting icons in input fields
+  - e.g. background: url("./assets/svg/lockIcon.svg") #ffffff 2.5% center no-repeat;
+- toggling password visibility
+  - e.g. type={showPassword ? "text" : "password" }
+  - e.g. onClick={() => setShowPassword((prevState) => !prevState)}
+- setting arbitrary object property key with square brackets
+  - e.g. { ...prevState, [e.target.id]: e.target.value }
+  - repeated properties after ... spread operator will overwrite existing properties IN ORDER
+- returning an object from an arrow function with round brackets
+  - e.g. setFormData(() => { return { ...prevState, [e.target.id]: e.target.value }})
+  - e.g. setFormData(() => ({ ...prevState, [e.target.id]: e.target.value }))
+- deleting object property with delete keyword
+  - e.g. delete object.property
+- documentation for React Toastify
+  - https://fkhadra.github.io/react-toastify/introduction
+- documentation for Firebase Authentication
+  - https://firebase.google.com/docs/auth/web/password-auth
+  - https://firebase.google.com/docs/auth/web/google-signin
+- documentation for Firebase Firestore
+  - https://firebase.google.com/docs/firestore/manage-data/add-data
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Profile Page
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- dynamic onClick function
+  - correct: onClick={() => {changeDetails && onSubmit()}}
+  - wrong: onClick={() => {changeDetails && onSubmit}}
+- difference between including and excluding () for event function
+  - correct: onClick={onSubmit}
+  - onSubmit will be called whenever element clicked
+  - wrong: onClick={onSubmit()}
+  - onSubmit() will be called whenever component renders
+  - for functions with parameters, use arrow function
+  - e.g. onClick={() => onSubmit(param1, param2)}
+- dynamic element styling using className attribute
+  - e.g. className={!changeDetails ? "profileName" : "profileNameActive"}
+- dynamic input element editing using disabled attribute
+  - e.g. disabled={!changeDetails}
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### PrivateRoute Component
 
-## Learn More
+- Navigate, Outlet from react-router-dom
+  - PrivateRoute.js: &lt;Outlet /&gt; is the INTENDED route component, satisfying some condition (e.g. user logged in)
+  - App.js: &lt;Outlet /&gt; is the child route component wrapped in the &lt;PrivateRoute /&gt; route component
+- difference between useNavigate and Navigate
+  - useNavigate redirects to a specific route programatically
+  - e.g. const navigate = useNavigate()
+  - e.g. if (true) navigate("/")
+  - Navigate redirects from JSX component returns
+  - e.g. return loggedIn ? &lt;Outlet /&gt; : &lt;Navigate to="/sign-in" /&gt;
+- @TODO: add useAuthStatus process
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### CreateListing Page
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- form element values are returned as strings
+  - e.g. value={true}
+- nullish coalescing operator (??)
+  - if left-hand-side operand is null or undefined, returns right-hand-side operand, else returns left-hand-side operand
+  - e.g. null ?? returnedValue
+- setting up Google Geocoding API
+  - go to "https://console.cloud.google.com/"
+  - select "APIs & Services"
+  - select "+ ENABLE APIS AND SERVICES"
+  - search and select "Geocoding API"
+  - enable "Geocoding API"
+- using .env variables
+  - .env variables must be prefixed with REACT_APP
+  - e.g. REACT_APP_VARIABLE_NAME
+  - process.env. prefix required to use .env variable in code
+  - e.g. process.env.REACT_APP_VARIABLE_NAME
+  - restart server whenever new environment variable created
+  - add .env to .gitignore file (e.g. ignore file when pushed to remote respository)
+- documentation for Google Geocoding API
+  - https://developers.google.com/maps/documentation/geocoding/requests-geocoding
+- documentation for Firebase Storage
+  - https://firebase.google.com/docs/storage/web/upload-files
 
-### Code Splitting
+### Listing Page
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- copy current URL to clipboard
+  - e.g. navigator.clipboard.writeText(window.location.href)
+- setting up Leaflet and React Leaflet
+  - terminal: npm install leaflet react-leaflet
+  - copy and paste Leaflet CSS and JS files from Leaflet quick start guide to index.html file
+  - import relevant libraries and follow pop-up marker example from React Leaflet guides
+- documentation for Leaflet and React Leaflet
+  - https://leafletjs.com/examples/quick-start/
+  - https://react-leaflet.js.org/docs/start-installation/
+  - https://react-leaflet.js.org/docs/example-popup-marker/
+- documentation for Swiper
+  - https://swiperjs.com/demos#null
 
-### Analyzing the Bundle Size
+### Contact Page
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- difference between useParams and useSearchParams
+  - in App.js: /contact/:landlordId
+  - route parameters come after :
+  - e.g. const params = useParams();
+  - e.g. params.landlordId
+  - in Listing.js: /contact/${listing.userRef}?listingName=${listing.name}
+  - search parameters come after ?
+  - e.g. const [searchParams, setSearchParams] = useSearchParams();
+  - e.g. searchParams.get("listingName")
+- using &lt;a&gt;&lt;/a&gt; to send email with subject and body
+  - e.g. mailto:${landlord.email}?subject=${searchParams.get("listingName")}&body=${message}
 
-### Making a Progressive Web App
+### Category Page
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- using startAfter to load more
+  - e.g. const q = query(..., startAfter(lastFetchedListing), limit(10), ...);
