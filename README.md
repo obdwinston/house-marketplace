@@ -1,4 +1,4 @@
-[Live Site] (https://house-marketplace-amber-alpha.vercel.app/)
+[Live Site](https://house-marketplace-amber-alpha.vercel.app/)
 
 ## Setting up Firebase
 
