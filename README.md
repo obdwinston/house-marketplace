@@ -1,5 +1,7 @@
 [Live Site](https://house-marketplace-amber-alpha.vercel.app/)
 
+[![My Skills](https://skillicons.dev/icons?i=react,firebase)](https://skillicons.dev)
+
 ## Setting up Firebase
 
 ### Initialising Firebase
