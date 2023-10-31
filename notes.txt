@@ -48,7 +48,7 @@ Navbar Component
   - svg stands for Scalable Vector Graphics
   - treated like a DOM element (i.e. can be styled, animated, etc.)
   - e.g. import {ReactComponent as IconName} from "./assets/IconName.svg"
-  - e.g. &lt;IconName /&gt;
+  - e.g. <IconName />
 
 SignIn/SignUp Page
 
@@ -93,14 +93,14 @@ Profile Page
 PrivateRoute Component
 
 - Navigate, Outlet from react-router-dom
-  - PrivateRoute.js: &lt;Outlet /&gt; is the INTENDED route component, satisfying some condition (e.g. user logged in)
-  - App.js: &lt;Outlet /&gt; is the child route component wrapped in the &lt;PrivateRoute /&gt; route component
+  - PrivateRoute.js: <Outlet /> is the INTENDED route component, satisfying some condition (e.g. user logged in)
+  - App.js: <Outlet /> is the child route component wrapped in the <PrivateRoute /> route component
 - difference between useNavigate and Navigate
   - useNavigate redirects to a specific route programatically
   - e.g. const navigate = useNavigate()
   - e.g. if (true) navigate("/")
   - Navigate redirects from JSX component returns
-  - e.g. return loggedIn ? &lt;Outlet /&gt; : &lt;Navigate to="/sign-in" /&gt;
+  - e.g. return loggedIn ? <Outlet /> : <Navigate to="/sign-in" />
 - @TODO: add useAuthStatus process
 
 CreateListing Page
@@ -155,7 +155,7 @@ Contact Page
   - search parameters come after ?
   - e.g. const [searchParams, setSearchParams] = useSearchParams();
   - e.g. searchParams.get("listingName")
-- using &lt;a&gt;&lt;/a&gt; to send email with subject and body
+- using <a></a> to send email with subject and body
   - e.g. mailto:${landlord.email}?subject=${searchParams.get("listingName")}&body=${message}
 
 Category Page
