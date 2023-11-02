@@ -1,8 +1,8 @@
-+---------------------+
-| Setting up Firebase |
-+---------------------+
++-----------------------+
+| Initialising Firebase |
++-----------------------+
 
-Initialising Firebase
+Setting up Firebase
 
 - create Firebase project
 - create web app in project
